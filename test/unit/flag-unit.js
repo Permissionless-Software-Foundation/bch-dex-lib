@@ -3,18 +3,26 @@
 */
 
 // Global npm libraries
-const assert = require('chai').assert
-const sinon = require('sinon')
+// const assert = require('chai').assert
+// const sinon = require('sinon')
 // const cloneDeep = require('lodash.clonedeep')
-const BchWallet = require('minimal-slp-wallet')
-const { Write } = require('p2wdb')
+// const BchWallet = require('minimal-slp-wallet')
+// const { Write } = require('p2wdb')
+
+import { assert } from 'chai'
+import BchWallet from 'minimal-slp-wallet'
+import P2WDB from 'p2wdb'
+import sinon from 'sinon'
 
 // Mocking data libraries.
 // const mockDataLib = require('./mocks/take-mocks')
 
 // Unit under test
-const Flag = require('../../lib/flag')
+// const Flag = require('../../lib/flag')
+import Flag from '../../lib/flag.js'
 let uut
+
+const Write = P2WDB.Write
 
 describe('#flag.js', () => {
   let sandbox

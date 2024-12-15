@@ -50,6 +50,6 @@ const tokenData01 = {
   ps002Compatible: true
 }
 
-module.exports = {
+export default {
   tokenData01
 }

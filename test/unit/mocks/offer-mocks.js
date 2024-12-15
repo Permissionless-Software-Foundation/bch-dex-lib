@@ -47,7 +47,7 @@ const nftOffer01 = {
   __v: 0
 }
 
-module.exports = {
+export default {
   simpleNftOffer01,
   nftOffer01
 }

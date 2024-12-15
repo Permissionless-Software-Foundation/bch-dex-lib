@@ -4,9 +4,9 @@
 */
 
 // Local libraries
-const Take = require('./lib/take.js')
-const Flag = require('./lib/flag.js')
-const TokenData = require('./lib/token-data.js')
+import Take from './lib/take.js'
+import Flag from './lib/flag.js'
+import TokenData from './lib/token-data.js'
 
 // const BCHJS = require('@psf/bch-js')
 
@@ -42,4 +42,4 @@ class BchDexLib {
   }
 }
 
-module.exports = BchDexLib
+export default BchDexLib

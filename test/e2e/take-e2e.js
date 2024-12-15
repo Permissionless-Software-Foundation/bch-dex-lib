@@ -3,11 +3,15 @@
 */
 
 // Global npm libraries
-const BchWallet = require('minimal-slp-wallet/index')
-const { Read, Write } = require('p2wdb/index')
+// const BchWallet = require('minimal-slp-wallet/index')
+// const { Read, Write } = require('p2wdb/index')
+
+import BchWallet from 'minimal-slp-wallet'
+import { Read, Write } from 'p2wdb'
 
 // Local libraries
-const Take = require('../../lib/take')
+// const Take = require('../../lib/take')
+import Take from '../../lib/take.js'
 // const mockData = require('../unit/mocks/take-mocks')
 
 describe('#take.js', () => {

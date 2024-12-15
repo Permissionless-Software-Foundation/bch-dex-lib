@@ -3,16 +3,22 @@
 */
 
 // Global npm libraries
-const assert = require('chai').assert
-const sinon = require('sinon')
-const cloneDeep = require('lodash.clonedeep')
-const BchWallet = require('minimal-slp-wallet')
+// const assert = require('chai').assert
+// const sinon = require('sinon')
+// const cloneDeep = require('lodash.clonedeep')
+// const BchWallet = require('minimal-slp-wallet')
+import { assert } from 'chai'
+import BchWallet from 'minimal-slp-wallet'
+import sinon from 'sinon'
+import cloneDeep from 'lodash.clonedeep'
 
 // Mocking data libraries.
-const mockDataLib = require('./mocks/token-data-mocks.js')
+// const mockDataLib = require('./mocks/token-data-mocks.js')
+import mockDataLib from './mocks/token-data-mocks.js'
 
 // Unit under test
-const TokenData = require('../../lib/token-data.js')
+// const TokenData = require('../../lib/token-data.js')
+import TokenData from '../../lib/token-data.js'
 let uut
 
 describe('#token-data.js', () => {

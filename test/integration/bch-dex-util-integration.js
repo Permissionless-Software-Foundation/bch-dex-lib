@@ -3,12 +3,17 @@
 */
 
 // Global libraries
-const assert = require('chai').assert
-const BchWallet = require('minimal-slp-wallet/index')
-const { Read } = require('p2wdb/index')
+// const assert = require('chai').assert
+// const BchWallet = require('minimal-slp-wallet/index')
+// const { Read } = require('p2wdb/index')
+
+import { assert } from 'chai'
+import BchWallet from 'minimal-slp-indexer'
+import { Read } from 'p2wdb'
 
 // Unit under test
-const BchDexUtil = require('../../lib/bch-dex-util')
+// const BchDexUtil = require('../../lib/bch-dex-util')
+import BchDexUtil from '../../lib/bch-dex-util.js'
 
 // Global variables
 let uut

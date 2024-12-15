@@ -191,7 +191,7 @@ const txData01 = [
   }
 ]
 
-module.exports = {
+export default {
   offerData01,
   offerData02,
   counterOfferUtxo01,

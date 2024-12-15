@@ -3,17 +3,29 @@
 */
 
 // Global npm libraries
-const assert = require('chai').assert
-const sinon = require('sinon')
-const cloneDeep = require('lodash.clonedeep')
-const BchWallet = require('minimal-slp-wallet')
-const { Read } = require('p2wdb')
+// const assert = require('chai').assert
+// const sinon = require('sinon')
+// const cloneDeep = require('lodash.clonedeep')
+// const BchWallet = require('minimal-slp-wallet')
+// const { Read } = require('p2wdb')
+
+import { assert } from 'chai'
+import BchWallet from 'minimal-slp-wallet'
+// import { Read } from 'p2wdb'
+import cloneDeep from 'lodash.clonedeep'
+import sinon from 'sinon'
 
 // Mocking data libraries.
-const mockDataLib = require('./mocks/util-mocks')
+// const mockDataLib = require('./mocks/util-mocks')
+import mockDataLib from './mocks/util-mocks.js'
 
 // Unit under test
-const BchDexUtil = require('../../lib/bch-dex-util')
+// const BchDexUtil = require('../../lib/bch-dex-util')
+import BchDexUtil from '../../lib/bch-dex-util.js'
+
+import P2WDB from 'p2wdb'
+const Read = P2WDB.Read
+
 let uut
 
 describe('#bch-dex-util.js', () => {

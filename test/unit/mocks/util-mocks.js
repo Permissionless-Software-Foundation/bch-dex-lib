@@ -19,6 +19,6 @@ const mockP2wdbRead = {
   __v: 0
 }
 
-module.exports = {
+export default {
   mockP2wdbRead
 }

@@ -3,11 +3,14 @@
 */
 
 // Global libraries
-const assert = require('chai').assert
-const BchWallet = require('minimal-slp-wallet')
+// const assert = require('chai').assert
+// const BchWallet = require('minimal-slp-wallet')
+import { assert } from 'chai'
+import BchWallet from 'minimal-slp-indexer'
 
 // Unit under test
-const TokenData = require('../../lib/token-data.js')
+// const TokenData = require('../../lib/token-data.js')
+import TokenData from '../../lib/token-data.js'
 
 // Global variables
 let uut
