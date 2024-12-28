@@ -136,12 +136,13 @@ describe('#take.js', () => {
         sandbox.stub(uut.bchWallet, 'getBalance').resolves(163456)
 
         // Force code path
-        mockData.offerData01.data.numTokens = 'a'
+        mockData.offerData01.numTokens = 'a'
 
         await uut.ensureFunds(mockData.offerData01)
 
         assert.fail('Unexpected result')
       } catch (err) {
+        console.log('err: ', err)
         assert.include(err.message, 'Could not calculate sats needed!')
       }
     })
@@ -175,7 +176,7 @@ describe('#take.js', () => {
         sandbox.stub(uut.bchWallet, 'getBalance').resolves(160000)
 
         // Force code path
-        mockData.offerData01.data.buyOrSell = 'buy'
+        mockData.offerData01.buyOrSell = 'buy'
 
         await uut.ensureFunds(mockData.offerData01)
 
@@ -199,7 +200,7 @@ describe('#take.js', () => {
 
     it('should throw an error if satsToMove can not be calculated correctly', async () => {
       try {
-        mockData.offerData01.data.numTokens = 'a'
+        mockData.offerData01.numTokens = 'a'
 
         await uut.moveBch(mockData.offerData01)
 
@@ -230,7 +231,7 @@ describe('#take.js', () => {
       sandbox.stub(uut.bchWallet, 'getTxData').resolves(mockData.txData01)
 
       // Force desired code path
-      mockData.offerData02.data.tokenType = 65
+      mockData.offerData02.tokenType = 65
 
       const inObj = {
         offerInfo: mockData.offerData02,
@@ -248,7 +249,7 @@ describe('#take.js', () => {
         sandbox.stub(uut.bchWallet, 'getTxData').resolves(mockData.txData01)
 
         // Force desired code path
-        mockData.offerData02.data.tokenType = 14
+        mockData.offerData02.tokenType = 14
 
         const inObj = {
           offerInfo: mockData.offerData02,
@@ -293,7 +294,7 @@ describe('#take.js', () => {
         sandbox.stub(uut.bchWallet, 'getTxData').resolves(mockData.txData01)
 
         // Force desired code path
-        mockData.offerData02.data.rateInBaseUnit = 'a'
+        mockData.offerData02.rateInBaseUnit = 'a'
 
         const inObj = {
           offerInfo: mockData.offerData02,
