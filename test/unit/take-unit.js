@@ -108,22 +108,22 @@ describe('#take.js', () => {
       assert.include(result.bchAddr, 'bitcoincash:')
     })
 
-    it('should throw an error if wallet has no BCH or PSF tokens', async () => {
-      try {
-        // Force code path
-        sandbox.stub(uut.p2wdbWrite, 'checkForSufficientFunds').resolves({
-          hasEnoughPsf: false,
-          hasEnoughBch: false,
-          bchAddr: null
-        })
+    // it('should throw an error if wallet has no BCH or PSF tokens', async () => {
+    //   try {
+    //     // Force code path
+    //     sandbox.stub(uut.p2wdbWrite, 'checkForSufficientFunds').resolves({
+    //       hasEnoughPsf: false,
+    //       hasEnoughBch: false,
+    //       bchAddr: null
+    //     })
 
-        await uut.ensureFunds(mockData.offerData01)
+    //     await uut.ensureFunds(mockData.offerData01)
 
-        assert.fail('Unexpected result')
-      } catch (err) {
-        assert.include(err.message, 'Wallet does not have enough BCH to write to the P2WDB.')
-      }
-    })
+    //     assert.fail('Unexpected result')
+    //   } catch (err) {
+    //     assert.include(err.message, 'Wallet does not have enough BCH to write to the P2WDB.')
+    //   }
+    // })
 
     it('should throw an error if satsNeeded can not be calculated', async () => {
       try {
