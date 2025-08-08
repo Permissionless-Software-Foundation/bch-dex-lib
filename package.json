@@ -10,7 +10,7 @@
     "test:integration": "mocha --timeout 25000 test/integration/",
     "lint": "standard --env mocha --fix",
     "docs": "./node_modules/.bin/apidoc -i src/ -o docs",
-    "coverage:report": "nyc --reporter=html mocha test/unit/ --exit",
+    "coverage:report": "c8 --reporter=html  mocha  --recursive test/unit/ --exit",
     "build": "browserify index.js -p tinyify --s BchDexLib -o dist/bch-dex-lib.min.js"
   },
   "keywords": [
