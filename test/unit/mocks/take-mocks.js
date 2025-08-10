@@ -51,7 +51,9 @@ const offerData02 = {
   utxoTxid: '87b55ec6ba6f1ee4ac48ccb59b0cbe4b22aadeb607e8077c87d81e2c13b6e48b',
   utxoVout: 1,
   tokenType: 1,
-  dataType: 'offer'
+  dataType: 'offer',
+  operatorAddress: 'bitcoincash:qzl0d3gcqeypv4cy7gh8rgdszxa9vvm2acv7fqtd00',
+  operatorPercentage: 2
 }
 
 const counterOfferUtxo01 = {
