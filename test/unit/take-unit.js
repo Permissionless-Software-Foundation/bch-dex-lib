@@ -313,8 +313,7 @@ describe('#take.js', () => {
   describe('#uploadCounterOffer', () => {
     it('should generate a Counter Offer and upload it to P2WDB', async () => {
       // Mock dependencies and force desired code path
-      sandbox.stub(uut.p2wdbWrite.bchWallet, 'initialize').resolves()
-      sandbox.stub(uut.p2wdbWrite, 'postEntry').resolves('fake-hash')
+      sandbox.stub(uut.nostr, 'post').resolves(['2e4b14f5d54a4190c0101b87382db1ce5ef9ec5db39dc2265bac5bd9d91cded2'])
 
       const inObj = {
         offerData: offerMocks.simpleNftOffer01,
@@ -324,7 +323,60 @@ describe('#take.js', () => {
 
       const result = await uut.uploadCounterOffer(inObj)
 
-      assert.equal(result, 'fake-hash')
+      assert.property(result, 'noteIds')
+      assert.property(result, 'eventIds')
+    })
+    it('should handle nostr error', async () => {
+      try {
+        // Mock dependencies and force desired code path
+        sandbox.stub(uut.nostr, 'post').throws(new Error('nostr error'))
+
+        const inObj = {
+          offerData: offerMocks.simpleNftOffer01,
+          partialHex: 'fake-hex',
+          offerCid: 'fake-cid'
+        }
+
+        await uut.uploadCounterOffer(inObj)
+        assert.fail('Unexpected result')
+      } catch (err) {
+        assert.include(err.message, 'nostr error')
+      }
+    })
+  })
+  describe('#takeOffer', () => {
+    it('should take an offer', async () => {
+      // Mock dependencies and force desired code path
+      sandbox.stub(uut.util, 'getEntryFromNostr').resolves(offerMocks.simpleNftOffer01)
+      sandbox.stub(uut.util, 'validateUtxo').resolves(true)
+      sandbox.stub(uut, 'ensureFunds').resolves({ hasEnoughFunds: true })
+      sandbox.stub(uut, 'moveBch').resolves({})
+      sandbox.stub(uut, 'generatePartialTx').resolves('hex')
+
+      await uut.takeOffer('cid')
+    })
+    it('should handle invalid utxos', async () => {
+      try {
+        sandbox.stub(uut.util, 'getEntryFromNostr').resolves(offerMocks.simpleNftOffer01)
+        sandbox.stub(uut.util, 'validateUtxo').resolves(false)
+        await uut.takeOffer('cid')
+
+        assert.fail('Unexpected result')
+      } catch (err) {
+        assert.include(err.message, 'Offer is not valid. UTXO has been spent.')
+      }
+    })
+    it('should handle insufficients funds', async () => {
+      try {
+        sandbox.stub(uut.util, 'getEntryFromNostr').resolves(offerMocks.simpleNftOffer01)
+        sandbox.stub(uut.util, 'validateUtxo').resolves(true)
+        sandbox.stub(uut, 'ensureFunds').resolves({ hasEnoughFunds: false })
+        await uut.takeOffer('cid')
+
+        assert.fail('Unexpected result')
+      } catch (err) {
+        assert.include(err.message, 'This wallet does not have enough BCH to Counter the selected Offer.')
+      }
     })
   })
 })
